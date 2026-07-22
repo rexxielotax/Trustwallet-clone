@@ -1,66 +1,96 @@
-import { Check, X, Search } from "lucide-react";
-import { motion } from "framer-motion";
+import { Search, Check as CheckIcon, X as XIcon } from "lucide-react";
 
-const ROWS = [
-  { chain: "BNB Smart Chain", vals: [true, true, true, true, true] },
-  { chain: "Solana", vals: [true, true, true, false, true] },
-  { chain: "Sui", vals: [true, false, true, false, true] },
-  { chain: "Ethereum", vals: [true, true, true, true, true] },
+const chains = [
+  {
+    name: "BNB Smart Chain (BNB)",
+    logo: "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/binance/info/logo.png",
+    buy: true, sell: true, swap: true, earn: true, dapps: true,
+  },
+  {
+    name: "Solana (SOL)",
+    logo: "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/solana/info/logo.png",
+    buy: true, sell: true, swap: true, earn: true, dapps: false,
+  },
+  {
+    name: "Sui (SUI)",
+    logo: "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/sui/info/logo.png",
+    buy: true, sell: true, swap: false, earn: true, dapps: false,
+  },
+  {
+    name: "Ethereum (ETH)",
+    logo: "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/info/logo.png",
+    buy: true, sell: true, swap: true, earn: true, dapps: true,
+  },
 ];
-const COLS = ["Buy", "Sell", "Swap", "Earn", "dApps"];
 
-export function ChainSupportTable() {
+function Check({ ok }: { ok: boolean }) {
+  const base = "inline-flex h-6 w-6 items-center justify-center rounded-full";
+  const colorClass = ok ? "bg-blue-600 text-white" : "border-2 border-gray-300 text-gray-300";
   return (
-    <section className="mt-16">
-      <div className="bg-gradient-hero py-20 px-4 md:px-8 text-white">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6 }}
-          className="mx-auto max-w-5xl text-center"
-        >
-          <h2 className="text-4xl md:text-6xl font-extrabold">One Platform, Millions of Assets</h2>
-          <p className="mt-4 text-white/85 max-w-2xl mx-auto">
-            Support for millions of assets across 100+ blockchains, all in one self-custody wallet.
-          </p>
+    <span className={base + " " + colorClass}>
+      {ok ? <CheckIcon size={14} strokeWidth={3} /> : <XIcon size={14} strokeWidth={3} />}
+    </span>
+  );
+}
 
-          <div className="mt-10 mx-auto max-w-2xl flex items-center gap-3 bg-white rounded-full px-5 py-3 text-foreground">
-            <Search className="h-5 w-5 text-muted-foreground" />
-            <input
-              placeholder="Search a chain..."
-              className="w-full outline-none bg-transparent text-sm"
-            />
-          </div>
+export default function ChainSupportTable() {
+  return (
+    <section className="bg-white py-8 px-4 md:px-8">
+  <div className="rounded-3xl bg-gradient-to-br from-blue-500 to-blue-700 py-16">
+      <div className="px-6 mx-auto max-w-5xl text-center text-white">
+        <h1 className="text-4xl font-bold md:text-5xl">
+          One Platform, Millions of Assets
+        </h1>
+        <p className="mt-4 text-white/80">
+          As a leading self-custody multi-chain platform, we support millions of
+          assets across 100+ blockchains.
+        </p>
 
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={{ hidden: {}, show: { transition: { staggerChildren: 0.08, delayChildren: 0.2 } } }}
-            className="mt-8 bg-white text-foreground rounded-3xl overflow-hidden text-left"
-          >
-            <div className="grid grid-cols-6 px-6 py-4 border-b border-border text-xs font-semibold uppercase text-muted-foreground">
-              <div>Chain</div>
-              {COLS.map((c) => <div key={c} className="text-center">{c}</div>)}
-            </div>
-            {ROWS.map((r) => (
-              <motion.div
-                key={r.chain}
-                variants={{ hidden: { opacity: 0, x: -20 }, show: { opacity: 1, x: 0 } }}
-                className="grid grid-cols-6 items-center px-6 py-4 border-b border-border last:border-0 hover:bg-muted/50 transition-colors"
-              >
-                <div className="font-semibold">{r.chain}</div>
-                {r.vals.map((v, i) => (
-                  <div key={i} className="grid place-items-center">
-                    {v ? <Check className="h-5 w-5 text-brand" /> : <X className="h-5 w-5 text-muted-foreground/40" />}
-                  </div>
-                ))}
-              </motion.div>
-            ))}
-          </motion.div>
-        </motion.div>
+        <div className="relative mt-8 mx-auto w-full max-w-xl">
+          <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+          <input
+  placeholder="Search a chain..."
+  className="w-full rounded-full bg-white py-3 pl-12 pr-6 text-gray-800 outline-none shadow-sm"
+/>
+        </div>
+
+        <div className="mt-10 overflow-hidden rounded-2xl bg-white text-left text-gray-800">
+          <table className="w-full text-sm">
+            <thead className="text-gray-500">
+              <tr>
+                <th className="px-6 py-4 font-medium">Chain</th>
+                <th className="px-4 py-4 font-medium">Buy</th>
+                <th className="px-4 py-4 font-medium">Sell</th>
+                <th className="px-4 py-4 font-medium">Swap</th>
+                <th className="px-4 py-4 font-medium">Earn</th>
+                <th className="px-4 py-4 font-medium">dApps</th>
+              </tr>
+            </thead>
+            <tbody>
+              {chains.map((c) => (
+                <tr key={c.name} className="border-t border-gray-100">
+                  <td className="flex items-center gap-3 px-6 py-4 font-medium">
+                    <img src={c.logo} alt={c.name} width={28} height={28} className="rounded-full" />
+                    {c.name}
+                  </td>
+                  <td className="px-4 py-4"><Check ok={c.buy} /></td>
+                  <td className="px-4 py-4"><Check ok={c.sell} /></td>
+                  <td className="px-4 py-4"><Check ok={c.swap} /></td>
+                  <td className="px-4 py-4"><Check ok={c.earn} /></td>
+                  <td className="px-4 py-4"><Check ok={c.dapps} /></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div className="mt-10 grid grid-cols-3 gap-4 text-2xl font-bold">
+          <div>10M+ Assets</div>
+          <div>600M+ NFTs</div>
+          <div>100+ Blockchains</div>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
   );
 }

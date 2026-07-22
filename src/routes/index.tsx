@@ -3,7 +3,7 @@ import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { PromoCarousel } from "@/components/PromoCarousel";
 import { CTABanner } from "@/components/CTABanner";
-import { ChainSupportTable } from "@/components/ChainSupportTable";
+import  ChainSupportTable  from "@/components/ChainSupportTable";
 import { StatsBar } from "@/components/StatsBar";
 import { GradientFeatureCard } from "@/components/GradientFeatureCard";
 import { SecurityCardGrid } from "@/components/SecurityCardGrid";
