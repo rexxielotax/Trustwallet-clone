@@ -13,6 +13,7 @@ import { TestimonialCarousel } from "@/components/TestimonialCarousel";
 import { Footer } from "@/components/Footer";
 import depositImg from "@/assets/deposit.png";
 import privacyImg from "@/assets/privacy.png";
+import { TrustBar } from "@/components/TrustBar";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -45,12 +46,14 @@ function Home() {
         <PromoCarousel />
         <CTABanner />
         <ChainSupportTable />
-        <StatsBar />
+  
         <GradientFeatureCard
           bgClass="bg-gradient-peach"
           eyebrow="SIMPLE. SEAMLESS."
           title="Simple. Seamless."
-          subtitle="A mobile and desktop experience designed to make crypto feel effortless."
+          subtitle="Enjoy a smooth mobile app and desktop experience with easy-to-use, powerful tools to support your entire Web3 journey.
+
+Deposit crypto easily"
           cardTitle="Deposit crypto easily from exchanges"
           ctaLabel="Get started with deposits"
           ctaHref="/buy-crypto"
@@ -61,7 +64,7 @@ function Home() {
         <GradientFeatureCard
           bgClass="bg-gradient-pinklime"
           title="Stay private and secure"
-          subtitle="Your keys, your crypto. Trust Wallet is a true self-custody wallet — you're always in control."
+          subtitle="Rest easy knowing that our privacy and security measures keep you in control of your data and digital assets, while also keeping them safe.."
           cardTitle="True ownership of your crypto assets"
           ctaLabel="Get Started"
           ctaHref="/security"

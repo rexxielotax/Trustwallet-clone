@@ -1,38 +1,16 @@
-import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import avatarsImg from "@/assets/avatars.png";
-
+import juanImg from "@/assets/juan.png";
+import jenImg from "@/assets/jen.png";
+import harryImg from "@/assets/harry.png";
+import esmartImg from "@/assets/esmart.png";
 const PEOPLE = [
-  { name: "Juan", quote: "Trust Wallet made my first steps in crypto genuinely simple." },
-  { name: "Jen", quote: "Swapping tokens across chains has never felt this seamless." },
-  { name: "Harry", quote: "I love the transparency and how much control I have over my assets." },
-  { name: "Esmart", quote: "The security alerts alone have saved me multiple times." },
+  { name: "Juan", quote: "The easiest way to understand DeFi is to get your hands dirty. The Trust Wallet dApp Browser helped me to use protocols with small amounts and learn what works and what doesn't work..", photo: juanImg },
+  { name: "Jen", quote: "Secure your private keys like your life depends on it. #DoNotShare 🔑.", photo: jenImg },
+  { name: "Harry", quote: "As a newcomer in this field, the introduction of blockchain technology has had a profound and transformative impact on my life. It has opened up an entirely new realm of possibilities that I am eager to explore.", photo: harryImg },
+  { name: "Esmart", quote: "I thoroughly enjoy engaging with DeFi and have developed a passion for minting NFTs. However, I always make it a point to conduct my own research and consistently check the Trust Wallet Security Scanner prior to any acquisition. By following these Web3 security practices, I ensure my safety and stay #SAFU. 🛡️", photo: esmartImg },
 ];
 
-// duplicate for infinite scroll effect
-const LOOP = [...PEOPLE, ...PEOPLE, ...PEOPLE];
-
 export function TestimonialCarousel() {
-  const trackRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = trackRef.current;
-    if (!el) return;
-    let raf = 0;
-    let x = 0;
-    const speed = 0.4;
-    const step = () => {
-      x -= speed;
-      const cardW = 300; // 280 + 20 gap approx
-      const oneSet = cardW * PEOPLE.length;
-      if (Math.abs(x) >= oneSet) x = 0;
-      el.style.transform = `translateX(${x}px)`;
-      raf = requestAnimationFrame(step);
-    };
-    raf = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(raf);
-  }, []);
-
   return (
     <section className="py-20 bg-neutral-card overflow-hidden">
       <div className="mx-auto max-w-6xl px-4 md:px-8">
@@ -50,28 +28,20 @@ export function TestimonialCarousel() {
             Millions of people around the world use Trust Wallet every day. Here's what a few of them say.
           </p>
         </motion.div>
-      </div>
 
-      <div className="mt-12 overflow-hidden">
-        <div ref={trackRef} className="flex gap-5 px-4 md:px-8 pb-4 will-change-transform" style={{ width: "max-content" }}>
-          {LOOP.map((p, i) => (
+        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-5">
+          {PEOPLE.map((p) => (
             <motion.div
-              key={i}
+              key={p.name}
               whileHover={{ y: -6 }}
-              className="w-[280px] shrink-0 bg-white rounded-3xl overflow-hidden"
+              className="bg-white rounded-3xl overflow-hidden"
             >
-              <div
-                className="aspect-square grid place-items-center overflow-hidden"
-                style={{
-                  background: "linear-gradient(135deg, oklch(0.7 0.05 260), oklch(0.4 0.1 260))",
-                }}
-              >
+              <div className="aspect-[3/6] overflow-hidden">
                 <img
-                  src={avatarsImg}
+                  src={p.photo}
                   alt={p.name}
                   loading="lazy"
-                  className="w-full h-full object-cover object-left"
-                  style={{ objectPosition: `${(i % 4) * 33}% center`, transform: "scale(1.6)" }}
+                  className="w-full h-full object-cover"
                 />
               </div>
               <div className="p-6">
@@ -83,7 +53,7 @@ export function TestimonialCarousel() {
         </div>
       </div>
 
-      <div className="text-center mt-8">
+      <div className="text-center mt-10">
         <motion.a
           whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.96 }}

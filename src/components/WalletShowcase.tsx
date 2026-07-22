@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import phoneImg from "@/assets/phone-mockup.png";
 import { LINKS, ext } from "@/lib/links";
-
+import walletVideo from "@/assets/wallet-demo.mp4";
 export function WalletShowcase() {
   const [tab, setTab] = useState<"mobile" | "extension">("mobile");
   return (
@@ -57,7 +56,14 @@ export function WalletShowcase() {
           >
             <div className="absolute top-2 left-1/2 -translate-x-1/2 h-6 w-24 rounded-b-2xl bg-phone z-10" />
             <div className="h-full w-full rounded-[36px] overflow-hidden bg-black">
-              <img src={phoneImg} alt="Trust Wallet mobile app UI" loading="lazy" className="h-full w-full object-cover" />
+              <video
+  src={walletVideo}
+  autoPlay
+  loop
+  muted
+  playsInline
+  className="h-full w-full object-cover"
+/>
             </div>
           </motion.div>
         </motion.div>

@@ -55,6 +55,33 @@ export function Hero() {
   />
 </div>
       </div>
+
+      <div className="mt-16 grid grid-cols-2 md:grid-cols-5 gap-6 text-center">
+        <div>
+          <div className="font-extrabold">Trusted by</div>
+          <div className="text-muted-foreground">200M people</div>
+        </div>
+        <div>
+          <div className="font-extrabold">Founded in</div>
+          <div className="text-muted-foreground">2017</div>
+        </div>
+        <div>
+          <div className="font-extrabold">Independently</div>
+          <div className="text-muted-foreground">Audited</div>
+        </div>
+        <div>
+          <div className="font-extrabold">ISO</div>
+          <div className="text-muted-foreground">Certified</div>
+        </div>
+        <div>
+          <div className="font-extrabold">Top reviews</div>
+          <div className="flex justify-center gap-0.5 mt-1">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <Star key={i} className="h-4 w-4 fill-brand text-brand" />
+            ))}
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

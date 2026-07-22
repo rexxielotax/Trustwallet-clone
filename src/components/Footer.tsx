@@ -92,7 +92,7 @@ const DOWNLOADS: FooterLink[] = [
 export function Footer() {
   return (
     <footer id="download" className="bg-background border-t border-border">
-      <div className="mx-auto max-w-7xl px-4 md:px-8 py-16">
+      <div className="mx-auto max-w-6xl px-6 md:px-10 py-16">
         <div className="text-center">
           <div className="text-sm font-semibold">Stay Connected:</div>
           <div className="mt-4 flex justify-center gap-2 flex-wrap">
@@ -112,30 +112,31 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 grid grid-cols-2 md:grid-cols-5 gap-8">
-          {COLS.map((col) => (
-            <div key={col.title}>
-              <h4 className="font-extrabold mb-4">{col.title}</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                {col.items.map((it, i) =>
-                  "h" in it ? (
-                    <li key={i} className="pt-3 font-extrabold text-foreground">{it.h}</li>
-                  ) : (
-                    <li key={i}>
-                      <a href={it.href} {...ext} className="hover:text-foreground transition-colors">{it.label}</a>
-                    </li>
-                  )
-                )}
-              </ul>
-            </div>
-          ))}
-        </div>
+       <div className="mt-14 flex flex-wrap gap-8 justify-between">
+  <div className="grid grid-cols-2 md:grid-cols-5 gap-8 flex-1">
+    {COLS.map((col) => (
+      <div key={col.title}>
+        <h4 className="font-extrabold mb-4 text-base">{col.title}</h4>
+        <ul className="space-y-2.5 text-[15px] text-muted-foreground">
+          {col.items.map((it, i) =>
+            "h" in it ? (
+              <li key={i} className="pt-3 font-extrabold text-foreground">{it.h}</li>
+            ) : (
+              <li key={i}>
+                <a href={it.href} {...ext} className="hover:text-foreground transition-colors">{it.label}</a>
+              </li>
+            )
+          )}
+        </ul>
+      </div>
+    ))}
+  </div>
 
-        <div className="mt-14 flex gap-3 justify-center flex-wrap">
-          <div className="h-14 w-14 rounded-xl border border-border grid place-items-center text-[10px] text-center text-muted-foreground">ISO<br/>27701</div>
-          <div className="h-14 w-14 rounded-xl border border-border grid place-items-center text-[10px] text-center text-muted-foreground">ISO<br/>27001</div>
-        </div>
-
+  <div className="flex gap-3 shrink-0">
+    <div className="h-14 w-14 rounded-xl border border-border grid place-items-center text-[10px] text-center text-muted-foreground">ISO<br/>27701</div>
+    <div className="h-14 w-14 rounded-xl border border-border grid place-items-center text-[10px] text-center text-muted-foreground">ISO<br/>27001</div>
+  </div>
+</div>
         <div className="mt-14 text-center">
           <h3 className="text-3xl md:text-5xl font-extrabold">Download Trust Wallet</h3>
           <p className="mt-3 text-muted-foreground">The most trusted & secure crypto wallet.</p>
