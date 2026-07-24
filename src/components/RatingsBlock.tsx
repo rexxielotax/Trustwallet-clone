@@ -20,9 +20,9 @@ export function RatingsBlock() {
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-2xl md:text-1xl  max-w-none whitespace-nowrap text-center">
-          Trust Wallet is one of the highest-rated self-custody crypto wallets
-        </h2>
+       <h2 className="text-2xl md:text-4xl font-extrabold text-center max-w-2xl mx-auto">
+  Trust Wallet is one of the highest-rated self-custody crypto wallets
+</h2>
         <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
           Rated 4.7 on the App Store and 4.6 on Google Play, across 2.7M verified reviews — trusted by millions of users on iOS and Android.
         </p>
